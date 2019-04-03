@@ -14,7 +14,7 @@ namespace Mastermind.Classes
         public string board { get; set; }
         public GamePlay(string board)
         {
-            this.board = board;
+            this.board = "1111";
             Main();
         }
 
@@ -39,13 +39,16 @@ namespace Mastermind.Classes
 
                 for(int i = 0; i<guess.Length; i++)
                 {
-                    if (board.IndexOf(guess[i]) == i)
+                    if (board.IndexOf(guess[i],i) > -1)
                     {
-                       plusses += "+";
-                    }
-                    else if (board.IndexOf(guess[i]) > 0)
-                    {
-                        minuses += "-";
+                        if (board.IndexOf(guess[i],i) == i)
+                        {
+                            plusses += "+";
+                        }
+                        else
+                        {
+                            minuses += "-";
+                        }
                     }
                 }
                 Console.WriteLine(plusses+minuses);
