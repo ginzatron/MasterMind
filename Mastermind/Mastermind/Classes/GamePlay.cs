@@ -22,10 +22,10 @@ namespace Mastermind.Classes
         {
             string plusses;
             string minuses;
-            guesses = 0;
+            guesses = 9;
             do
             {
-                Console.WriteLine("Please enter 4 digit guess, each digit between 1-6 inclusive: ");
+                Console.WriteLine($"Please enter 4 digit guess, each digit between 1-6 inclusive: ");
                 this.guess = Console.ReadLine();
 
                 plusses = "";
@@ -37,14 +37,18 @@ namespace Mastermind.Classes
                     break;
                 }
 
+                // looping throuhg guess
                 for(int i = 0; i<guess.Length; i++)
                 {
+                    // if the index value in the guess is contained in the board
                     if (board.IndexOf(guess[i],i) > -1)
                     {
+                        // number is correct and in the correct place, add a +
                         if (board.IndexOf(guess[i],i) == i)
                         {
                             plusses += "+";
                         }
+                        // else if the number is correct but not in the correct location, add a -
                         else
                         {
                             minuses += "-";
@@ -52,9 +56,10 @@ namespace Mastermind.Classes
                     }
                 }
                 Console.WriteLine(plusses+minuses);
-                guesses++;
+                Console.WriteLine($"you have {guesses} guesses remaining");
+                guesses--;
 
-            } while ((guesses < 10));
+            } while ((guesses >= 0));
         }
     }
 }
