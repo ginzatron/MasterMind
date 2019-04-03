@@ -6,7 +6,7 @@ namespace mastermindTest.Classes
 {
     public class Board
     {
-        public int[] GameBoard = new int[4];
+        public string gameBoard;
 
         public Board()
         {
@@ -14,9 +14,8 @@ namespace mastermindTest.Classes
 
             for (int i = 0; i < 4; i++)
             {
-                this.GameBoard[i] = randomNum.Next(0, 7);
+                this.gameBoard += randomNum.Next(0, 7);
             }
-            Console.WriteLine($"{this.GameBoard[0]}{this.GameBoard[1]}{this.GameBoard[2]}{this.GameBoard[3]}");
         }
     }
 }
