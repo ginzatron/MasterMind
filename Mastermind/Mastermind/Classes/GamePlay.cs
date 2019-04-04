@@ -31,7 +31,6 @@ namespace Mastermind.Classes
 
             while(true)
             {
-                
                 Console.WriteLine($"Please enter 4 digit guess, each digit between 1-6 inclusive: ");
                 this.guess = Console.ReadLine();
 
@@ -51,10 +50,10 @@ namespace Mastermind.Classes
                     for (int i = 0; i < guess.Length; i++)
                     {
                         // if the index value in the guess is contained in the board
-                        if (board.IndexOf(guess[i], i) > -1)
+                        if (board.IndexOf(guess[i]) > -1)
                         {
                             // number is correct and in the correct place, add a +
-                            if (board.IndexOf(guess[i], i) == i)
+                            if (guess[i] == board[i]) 
                             {
                                 plusses += "+";
                             }
@@ -76,6 +75,7 @@ namespace Mastermind.Classes
                     Console.WriteLine($"the masterminded number was {this.board}");
                     Console.Write("Play Again(y/n)? ");
                     guesses = 9;
+                    won = false;
                     if (Console.ReadLine().ToLower() != "y") break;
                 }
             } 
