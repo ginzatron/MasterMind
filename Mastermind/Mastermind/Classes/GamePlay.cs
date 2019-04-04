@@ -7,14 +7,30 @@ namespace Mastermind.Classes
 {
     public class GamePlay
     {
+        /// <summary>
+        /// palyer guess
+        /// </summary>
         public string guess { get; set; }
         
+        /// <summary>
+        /// total number of guesses
+        /// </summary>
         public int guesses { get; set; }
 
-        public Board board { get; set; }
+        /// <summary>
+        /// board class to get new boards from
+        /// </summary>
+        public Board board { get;}
 
-        public string gameBoard { get; set; }
+        /// <summary>
+        /// game board for user
+        /// </summary>
+        private string gameBoard { get; set; }
 
+        /// <summary>
+        /// constructor gets an instance of the game to generate new boards from
+        /// </summary>
+        /// <param name="board"></param>
         public GamePlay(Board board)
         {
             this.board = board;
@@ -23,6 +39,7 @@ namespace Mastermind.Classes
 
         public void Main()
         {
+            // setting up game state
             this.gameBoard = board.generateBoard();
             string plusses;
             string minuses;
