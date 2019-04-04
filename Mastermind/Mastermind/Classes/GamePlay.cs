@@ -14,7 +14,7 @@ namespace Mastermind.Classes
         public string board { get; set; }
         public GamePlay(string board)
         {
-            this.board = "1111";
+            this.board = board;
             Main();
         }
 
@@ -44,9 +44,10 @@ namespace Mastermind.Classes
                     won = true;
                 }
 
-                // looping throuhg guess
+                
                 if (!won)
                 {
+                    // looping throuhg guess
                     for (int i = 0; i < guess.Length; i++)
                     {
                         // if the index value in the guess is contained in the board
