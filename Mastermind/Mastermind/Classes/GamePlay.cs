@@ -23,8 +23,15 @@ namespace Mastermind.Classes
             string plusses;
             string minuses;
             guesses = 9;
-            do
+            bool won = false;
+
+            Console.WriteLine("We are goign to play mastermind. I have generated a random 4 digit number with each digit from 1-6");
+            Console.WriteLine("A + indicates a number and location correct, a - indicates a correct number but incorrect location");
+            Console.WriteLine("You will have 10 chances.");
+
+            while(true)
             {
+                
                 Console.WriteLine($"Please enter 4 digit guess, each digit between 1-6 inclusive: ");
                 this.guess = Console.ReadLine();
 
@@ -34,32 +41,43 @@ namespace Mastermind.Classes
                 if (this.board == this.guess)
                 {
                     Console.WriteLine("you did it!");
-                    break;
+                    won = true;
                 }
 
                 // looping throuhg guess
-                for(int i = 0; i<guess.Length; i++)
+                if (!won)
                 {
-                    // if the index value in the guess is contained in the board
-                    if (board.IndexOf(guess[i],i) > -1)
+                    for (int i = 0; i < guess.Length; i++)
                     {
-                        // number is correct and in the correct place, add a +
-                        if (board.IndexOf(guess[i],i) == i)
+                        // if the index value in the guess is contained in the board
+                        if (board.IndexOf(guess[i], i) > -1)
                         {
-                            plusses += "+";
-                        }
-                        // else if the number is correct but not in the correct location, add a -
-                        else
-                        {
-                            minuses += "-";
+                            // number is correct and in the correct place, add a +
+                            if (board.IndexOf(guess[i], i) == i)
+                            {
+                                plusses += "+";
+                            }
+                            // else if the number is correct but not in the correct location, add a -
+                            else
+                            {
+                                minuses += "-";
+                            }
                         }
                     }
+                    Console.WriteLine(plusses + minuses);
+                    Console.WriteLine($"you have {guesses} guesses remaining");
+                    guesses--;
                 }
-                Console.WriteLine(plusses+minuses);
-                Console.WriteLine($"you have {guesses} guesses remaining");
-                guesses--;
-
-            } while ((guesses >= 0));
+                
+                // out of guesses or won the game see if user wants to play again
+                if (guesses == -1 || won)
+                {
+                    Console.WriteLine($"the masterminded number was {this.board}");
+                    Console.Write("Play Again(y/n)? ");
+                    guesses = 9;
+                    if (Console.ReadLine().ToLower() != "y") break;
+                }
+            } 
         }
     }
 }
