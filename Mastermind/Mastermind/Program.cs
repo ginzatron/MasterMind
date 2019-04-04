@@ -9,7 +9,7 @@ namespace mastermindTest
         static void Main(string[] args)
         {
             Board board = new Board();
-            GamePlay game = new GamePlay(board.gameBoard);
+            GamePlay game = new GamePlay(board);
         }
     }
 }

@@ -11,8 +11,11 @@ namespace Mastermind.Classes
         
         public int guesses { get; set; }
 
-        public string board { get; set; }
-        public GamePlay(string board)
+        public Board board { get; set; }
+
+        public string gameBoard { get; set; }
+
+        public GamePlay(Board board)
         {
             this.board = board;
             Main();
@@ -20,6 +23,7 @@ namespace Mastermind.Classes
 
         public void Main()
         {
+            this.gameBoard = board.generateBoard();
             string plusses;
             string minuses;
             guesses = 9;
@@ -37,7 +41,7 @@ namespace Mastermind.Classes
                 plusses = "";
                 minuses = "";
 
-                if (this.board == this.guess)
+                if (this.gameBoard == this.guess)
                 {
                     Console.WriteLine("you did it!");
                     won = true;
@@ -50,10 +54,10 @@ namespace Mastermind.Classes
                     for (int i = 0; i < guess.Length; i++)
                     {
                         // if the index value in the guess is contained in the board
-                        if (board.IndexOf(guess[i]) > -1)
+                        if (gameBoard.IndexOf(guess[i]) > -1)
                         {
                             // number is correct and in the correct place, add a +
-                            if (guess[i] == board[i]) 
+                            if (guess[i] == gameBoard[i]) 
                             {
                                 plusses += "+";
                             }
@@ -72,7 +76,7 @@ namespace Mastermind.Classes
                 // out of guesses or won the game see if user wants to play again
                 if (guesses == -1 || won)
                 {
-                    Console.WriteLine($"the masterminded number was {this.board}");
+                    Console.WriteLine($"the masterminded number was {this.gameBoard}");
                     Console.Write("Play Again(y/n)? ");
                     if (Console.ReadLine().ToLower() != "y") break;
                     
@@ -80,10 +84,7 @@ namespace Mastermind.Classes
                     guesses = 9;
                     won = false;
                     Console.Clear();
-
-                    // generate new board
-                    Board board = new Board();
-                    this.board = board.gameBoard;
+                    this.gameBoard = board.generateBoard();
                 }
             } 
         }
