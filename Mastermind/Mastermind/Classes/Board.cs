@@ -14,7 +14,7 @@ namespace mastermindTest.Classes
 
             for (int i = 0; i < 4; i++)
             {
-                this.gameBoard += randomNum.Next(0, 7);
+                this.gameBoard += randomNum.Next(1, 6);
             }
         }
     }

@@ -74,9 +74,12 @@ namespace Mastermind.Classes
                 {
                     Console.WriteLine($"the masterminded number was {this.board}");
                     Console.Write("Play Again(y/n)? ");
+                    if (Console.ReadLine().ToLower() != "y") break;
                     guesses = 9;
                     won = false;
-                    if (Console.ReadLine().ToLower() != "y") break;
+                    Console.Clear();
+                    Board board = new Board();
+                    this.board = board.gameBoard;
                 }
             } 
         }
